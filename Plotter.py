@@ -31,6 +31,7 @@ class Plotter:
         
         file.close() #Close the file
 
+    #Draw the line of best fit on the scatter plot
     def draw_line(self):
         slope, intercept = np.polyfit(size_list, price_list, 1)
         self.line_slope = slope
@@ -41,6 +42,7 @@ class Plotter:
         plt.title("Best Fit Line")
         plt.show()
         
+    #Graph the scatter plot
     def graph(self):
         plt.title("House Pricing Based on sqft")
         plt.xlabel("Size in sqft")
@@ -48,8 +50,8 @@ class Plotter:
         plt.scatter(size_list, price_list)
         plt.show()
 
+    #Predict the cost of the house (with a 5% margin of error)
     def predict_cost(self, size):
-        #create upper and lower bound
         finalPrice = (size)*(self.line_slope) + self.yintercept
         temp = finalPrice * 0.05
         upperBound = finalPrice + temp
