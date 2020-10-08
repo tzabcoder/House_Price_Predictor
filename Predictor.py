@@ -8,6 +8,8 @@ hyp = 0.5
 size = 0
 cost_val = 0
 
+#Propmts for user input
+#If the user input is invalid, it will continue to propmt for better data
 def input_data():
     repeat = True
     while repeat:
@@ -22,6 +24,8 @@ def input_data():
             print("Invalid input...")
             repeat = True
 
+#Opens the specified file and reads the data into the lists
+#Converts the input into numbers
 def get_file():
     size = 0
     file = open("C:\\Programming\\Price_Predictor\\data_file.txt", "r")
@@ -55,6 +59,7 @@ def check_num(temp):
         except ValueError:
             return True
 
+#User input if NO file is selected
 def read_input():
     print("_____Input_____")
     isnum = True
@@ -66,7 +71,7 @@ def read_input():
         else:
             size = convert_string(size)
 
-    for x in range(size):
+    for x in range(size): #Continue to input houses 
         validateS = True
         while validateS:
             sizeTemp = input("Enter the size of the house in sqft: ")
@@ -95,10 +100,11 @@ def write_file():
 
     file.close() #Close the file
 
-def disp_data():
+def disp_data(): #Test print the lists
     print(sizeArray)
     print(priceArray)
 
+#Returns the house's square footage to be predicted
 def get_price():
     validate = True
     while(validate):
@@ -111,6 +117,7 @@ def get_price():
         else:
             print("Invalid Input...")
 
+#Append the data to the file
 def write_actual_val(val,size):
     file = open("C:\\Programming\\Price_Predictor\\data_file.txt", "a")
     file.write(str(size))
@@ -119,13 +126,14 @@ def write_actual_val(val,size):
     file.write('\n')
     file.close()
 
+#main function
 def main():
     cont = True
     callFunc = True
     input_data()
     write_file()
 
-    while cont:
+    while cont: #Continues the program if the user wants to add more input
         p = Plotter()
         p.openFile()
         p.graph()
